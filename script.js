@@ -6,54 +6,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize Feather icons
   feather.replace();
 
-  // Mobile menu toggle
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-
-  if (mobileMenuToggle && navMenu) {
-    mobileMenuToggle.addEventListener('click', function(e) {
-      e.stopPropagation(); // evita fechar imediatamente por outro listener global
-      navMenu.classList.toggle('active');
-      // Animação do ícone hamburguer
-      const spans = this.querySelectorAll('span');
-      if (navMenu.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translateY(7px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
-      } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      }
-    });
-
-    // Fecha o menu ao clicar fora dele no mobile
-    document.addEventListener('click', function(e) {
-      if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-        navMenu.classList.remove('active');
-        // Reset animação hamburguer
-        const spans = mobileMenuToggle.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      }
-    });
-  }
-
   // Navigation - Single Page Application
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('.page-section');
-
   function showSection(targetId) {
       // Hide all sections
       sections.forEach(section => {
-          section.classList.remove('active');
+          if (section.classList.contains('active')) {
+              section.classList.remove('active');
+          }
       });
 
       // Show target section
       const targetSection = document.querySelector(targetId);
       if (targetSection) {
-          targetSection.classList.add('active');
+          setTimeout(() => {
+              targetSection.classList.add('active');
+          }, 10);
       }
 
       // Update active nav link
@@ -82,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
       link.addEventListener('click', function(e) {
           e.preventDefault();
           const targetId = this.getAttribute('href');
+          console.log('Navegando para:', targetId);
           showSection(targetId);
           
           // Update URL without reloading
