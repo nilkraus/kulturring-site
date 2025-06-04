@@ -1,0 +1,18 @@
+# Ignora arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignora pastas de dependências e builds
+node_modules/
+dist/
+build/
+
+# Ignora arquivos temporários
+*.log
+*.tmp
+
+# Ignora arquivos do sistema operacional
+*.swp
+
+# Ignora arquivos do VSCode
+.vscode/
