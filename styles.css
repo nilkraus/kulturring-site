@@ -2034,7 +2034,29 @@ footer {
   .collections-gallery {
       grid-template-columns: 1fr;
   }
-  
+  @media (max-width: 900px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  .nav-menu {
+    position: fixed;
+    top: 80px;
+    left: -100vw;
+    flex-direction: column;
+    background: var(--white);
+    width: 100vw;
+    height: calc(100vh - 80px);
+    padding: 40px 0;
+    gap: 30px;
+    transition: left 0.3s;
+    z-index: 1001;
+    display: flex; /* Garante que fica flex no mobile */
+  }
+  .nav-menu.active {
+    left: 0;
+    display: flex;
+  }
+}
   .newsletter-form {
       flex-direction: column;
   }
